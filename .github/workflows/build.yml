@@ -92,6 +92,7 @@ jobs:
 
       - name: Commit and push to ags-templates repo
         if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
         env:
           OWNERNAME: ericoporto
           BRANCH_NAME: master
