@@ -100,8 +100,6 @@ jobs:
           echo "${BRANCH_NAME}"
           git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${OWNERNAME}/ags-templates
           cd ags-templates
-          git remote remove upstream
-          git remote show origin
           git checkout "${BRANCH_NAME}"
           cp ../build/*agt Templates/
           git config user.name "GitHub Actions Bot"
