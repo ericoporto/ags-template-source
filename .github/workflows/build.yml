@@ -110,4 +110,4 @@ jobs:
           git commit -m "synced templates"
           git config --unset-all http.https://github.com/.extraheader
           git push origin $BRANCH_NAME
-          git push "https://$USERNAME:$GH_TOKEN@github.com/$USERNAME/ags-templates" --set-upstream "$BRANCH_NAME"
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$USERNAME/ags-templates" --set-upstream "$BRANCH_NAME"
