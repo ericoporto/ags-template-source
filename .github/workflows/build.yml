@@ -93,15 +93,16 @@ jobs:
       - name: Commit and push to ags-templates repo
         if: startsWith(github.ref, 'refs/tags/v')
         env:
+          USERNAME: ericoporto
           BRANCH_NAME: master
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "$BRANCH_NAME"
-          gh repo clone ericoporto/ags-templates ags-templates
+          gh repo clone "$USERNAME/ags-templates" ags-templates
           cd ags-templates
           git remote remove upstream
           git remote show origin
-          git checkout $BRANCH_NAME
+          git checkout "$BRANCH_NAME"
           cp ../build/*agt Templates/
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -109,3 +110,4 @@ jobs:
           git commit -m "synced templates"
           git config --unset-all http.https://github.com/.extraheader
           git push origin $BRANCH_NAME
+          git push "https://$USERNAME:$GH_TOKEN@github.com/$USERNAME/ags-templates" --set-upstream "$BRANCH_NAME"
